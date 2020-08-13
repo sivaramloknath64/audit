@@ -14,7 +14,6 @@ stages {
                 steps{
                   echo "installing the npm package "
                     sh 'npm install'
-                    sh 'npm audit fix -force'
                     sh 'npm audit '
                          
                      

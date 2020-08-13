@@ -1,0 +1,35 @@
+pipeline{
+agent any
+stages{
+
+                    stage('deploy to prod1'){
+                    steps{
+                    echo "deploying to production 1"
+                    
+                     sshagent(['ssh-key']) {
+                      sh "ssh -o StrictHostKeyChecking=no ec2-user@3.15.223.255 docker rm -f angulardemo || true"
+                      sh "ssh -o StrictHostKeyChecking=no ec2-user@3.15.223.255 docker run -d --name=angulardemo -p 8082:8081 sivaramloknath64/angular"
+                  }
+                    
+                    
+                    }
+                    }
+
+
+                    stage('deploy to prod2'){
+                    steps{
+                    echo "deploying to production 2"
+                    
+                     sshagent(['ssh-key']) {
+                      sh "ssh -o StrictHostKeyChecking=no ec2-user@18.191.243.122 docker rm -f angulardemo || true"
+                      sh "ssh -o StrictHostKeyChecking=no ec2-user@18.191.243.122 docker run -d --name=angulardemo -p 8082:8081 sivaramloknath64/angular"
+                  }
+                    
+                    
+                    
+                    }
+                    }
+
+
+}
+}

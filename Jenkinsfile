@@ -15,7 +15,8 @@ stages {
                   echo "installing the npm package "
                   
                   sh'npm install --save-dev @angular/cli@10.0.5'
-                    sh 'npm audit '
+                  
+                    sh 'npm audit fix'
                          
                      
                     }
